@@ -1,16 +1,18 @@
-import express from 'express';
-import dotenv from 'dotenv';
+import sequelize from "./config/database";
+import { seedAdminUser } from "./seeders/adminSeeder";
 
-dotenv.config();
 
-const app = express();
+(async () => {
+    try {
+        await sequelize.authenticate();
+        console.log("Database connected successfully.");
+        
+        await sequelize.sync({ alter: true });
+        console.log("All models synchronized successfully.");
 
-app.get('/', (_req, res) => {
-    res.json({message: 'E-Cuti backend running 🚀' });
-});
+        await seedAdminUser();
 
-const PORT = process.env.PORT || 3000;
-
-app.listen (PORT, () => {
-    console.log('Serever running on port ${PORT}');
-});
+    } catch (error) {
+        console.error("Unable to connect to the database:", error);
+    }
+})();
