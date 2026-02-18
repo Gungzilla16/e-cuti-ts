@@ -29,7 +29,6 @@ class Pegawai
                 type: DataTypes.INTEGER,
                 autoIncrement: true,
                 primaryKey: true,
-                allowNull: true
             },
             nama: {
                 type: DataTypes.STRING,

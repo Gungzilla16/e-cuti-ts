@@ -40,7 +40,7 @@ class ApprovalLog
             },
             approved_by: {
                 type: DataTypes.INTEGER,
-                allowNull: false,
+                allowNull: true,
             },
             role: {
                 type: DataTypes.STRING,
